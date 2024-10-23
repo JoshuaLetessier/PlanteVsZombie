@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "Plant.hpp"
-#include "Playground.h"
+#include "Enemy.h"
+#include "Projectile.h"
 
 #include "PlantIdleAction.h"
 #include "PlantAttackAction.h"
@@ -60,7 +61,7 @@ void Playground::draw(sf::RenderWindow& window)
 {
 	for (auto plant : mPlants)
 	{
-		window.draw(plant->getShape());
+		window.draw(*plant->getShape());
 	}
 }
 

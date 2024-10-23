@@ -8,8 +8,6 @@ public:
 
 	static RenderApp* Init();
 	void Run();
-	void Update();
-	void Render();
 	void Release();
 
 private:

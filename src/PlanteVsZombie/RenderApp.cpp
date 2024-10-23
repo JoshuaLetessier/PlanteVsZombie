@@ -1,4 +1,5 @@
 #include "pch.h"
+#include "Playground.h"
 #include "RenderApp.h"
 
 RenderApp::~RenderApp()
@@ -17,26 +18,23 @@ void RenderApp::Run()
 {
 	while (mWindow->isOpen())
 	{
-		Update();
-		Render();
+		sf::Event event;
+		sf::Event dummy_event;
+		while (mWindow->pollEvent(event))
+		{
+			if (event.type == sf::Event::Closed ||
+				(event.type == sf::Event::KeyPressed &&
+					event.key.code == sf::Keyboard::Escape))
+			{
+				mWindow->close();
+			}
+			Playground::getInstance()->handleUserInput(event, *mWindow);
+		}
+		mWindow->clear();
+		Playground::getInstance()->draw(*mWindow);
+		Playground::getInstance()->update();
+		mWindow->display();
 	}
-}
-
-void RenderApp::Update()
-{
-	sf::Event event;
-	while (mWindow->pollEvent(event))
-	{
-		if (event.type == sf::Event::Closed || 
-			(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape))
-			mWindow->close();
-	}
-}
-
-void RenderApp::Render()
-{
-	mWindow->clear();
-	mWindow->display();
 }
 
 void RenderApp::Release()

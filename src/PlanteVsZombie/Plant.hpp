@@ -8,11 +8,13 @@
 
 class Plant
 {
+	sf::CircleShape mShape;
     sf::Vector2f mPosition;
     std::string mName;
     int mAmmoCount, mMaxAmmo;
     Context::State mState;
     Behaviour * mBehaviour;
+
 public:
     Plant();
     Plant(

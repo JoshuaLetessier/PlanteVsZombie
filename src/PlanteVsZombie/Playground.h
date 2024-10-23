@@ -1,6 +1,6 @@
 #pragma once
 
-class Texture;
+class Behaviour;
 class Plant;
 class Enemy;
 class Projectile;
@@ -17,6 +17,9 @@ public:
 
 private:
 	static Playground* mInstance;
+
+	Behaviour* mPlantBehaviour;
+
 	std::vector<Plant*> mPlants;
 	std::vector<Enemy*> mEnemies;
 	std::vector<Projectile*> mProjectiles;

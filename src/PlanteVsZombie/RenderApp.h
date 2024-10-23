@@ -15,7 +15,6 @@ public:
 
 private:
 	sf::RenderWindow* mWindow = nullptr;
-	std::vector<Plant*> mPlants;
+	std::vector<Plant*> mPlants = {};
 
-	Behaviour* mPlantBehaviour;
 };

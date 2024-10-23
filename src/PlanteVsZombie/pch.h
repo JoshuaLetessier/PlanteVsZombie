@@ -6,7 +6,11 @@
 #include <map>
 #include <string>
 
+#include "Context.hpp"
+#include "Behaviour.hpp"
+#include "Playground.h"
 #include "Action.hpp"
+#include "Entity.h"
 
 #ifdef _DEBUG
 #include <crtdbg.h>

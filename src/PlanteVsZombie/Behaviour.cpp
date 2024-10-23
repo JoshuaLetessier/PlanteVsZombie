@@ -1,9 +1,7 @@
 #include "pch.h"
-#include "Behaviour.hpp"
-//#include "IdleAction.hpp"
-
 #include "Plant.hpp"
 #include "Transition.hpp"
+#include "Behaviour.hpp"
 
 Behaviour::Behaviour()
 {}

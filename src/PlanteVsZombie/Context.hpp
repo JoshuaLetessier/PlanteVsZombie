@@ -2,8 +2,8 @@
 
 namespace Context
 {
-enum class State 
-{
-    // ajoutez vos états ici
-};
+    enum class State 
+    {
+        // ajoutez vos états ici
+    };
 };

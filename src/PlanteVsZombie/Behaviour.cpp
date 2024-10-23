@@ -6,8 +6,7 @@
 #include "Transition.hpp"
 
 Behaviour::Behaviour()
-{
-}
+{}
 
 Behaviour::~Behaviour()
 {

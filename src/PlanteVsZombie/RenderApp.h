@@ -1,5 +1,8 @@
 #pragma once
 
+class Behaviour;
+class Plant;
+
 class RenderApp
 {
 public:
@@ -12,4 +15,7 @@ public:
 
 private:
 	sf::RenderWindow* mWindow = nullptr;
+	std::vector<Plant*> mPlants;
+
+	Behaviour* mPlantBehaviour;
 };

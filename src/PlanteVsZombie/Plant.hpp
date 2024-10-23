@@ -8,11 +8,17 @@
 
 class Plant
 {
+	sf::CircleShape mShape;
     sf::Vector2f mPosition;
     std::string mName;
     int mAmmoCount, mMaxAmmo;
     Context::State mState;
     Behaviour * mBehaviour;
+
+    bool mIsShooting = false;
+
+	int mHealth = 10;
+
 public:
     Plant();
     Plant(
@@ -26,8 +32,16 @@ public:
 
     sf::Color getColor() const;
     sf::Vector2f getPosition() const;
+	sf::CircleShape getShape() const;
+
     int getAmmoCount() const;
-    void refillMagazine() ;
+    void setAmmoCount(int newAmmoCount);
+
+	int getHealth() const;
+
+    void refillMagazine();
+
+	void setIsShooting(bool newIsShooting);
 
     bool shoot();
 

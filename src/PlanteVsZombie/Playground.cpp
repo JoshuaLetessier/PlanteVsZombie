@@ -75,7 +75,15 @@ void Playground::update()
 
 void Playground::handleUserInput(sf::Event& event, sf::RenderWindow& window)
 {
-    // Handle user input
+	//if (event.type == sf::)
+	//{
+	//	if (event.mouseButton.button == sf::Mouse::Left)
+	//	{
+	//		sf::Vector2f position = window.mapPixelToCoords(sf::Mouse::getPosition(window));
+	//		Plant* plant = new Plant(position, mPlantBehaviour, 10);
+	//		mPlants.push_back(plant);
+	//	}
+	//}
 }
 
 std::vector<Enemy*>& Playground::getEnemysInstance()

@@ -15,6 +15,8 @@ public:
 	void update();
 	void handleUserInput(sf::Event& event, sf::RenderWindow& window);
 
+	static std::vector<Enemy*>& getEnemysInstance();
+
 private:
 	static Playground* mInstance;
 	std::vector<Plant*> mPlants;

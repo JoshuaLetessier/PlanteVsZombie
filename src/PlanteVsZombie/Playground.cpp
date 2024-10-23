@@ -1,7 +1,8 @@
 #include "pch.h"
-#include "Texture.h"
 #include "Plant.hpp"
 #include "Playground.h"
+
+Playground* Playground::mInstance = nullptr;
 
 Playground::~Playground()
 {
@@ -34,6 +35,11 @@ void Playground::update()
 void Playground::handleUserInput(sf::Event& event, sf::RenderWindow& window)
 {
     // Handle user input
+}
+
+std::vector<Enemy*>& Playground::getEnemysInstance()
+{
+	return mInstance->mEnemies;
 }
 
 void Playground::checkCollision(std::vector<Projectile*>& mProjectiles, std::vector<Enemy*>& mEnemies)

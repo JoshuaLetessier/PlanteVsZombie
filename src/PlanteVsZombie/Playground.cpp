@@ -7,8 +7,9 @@
 #include "PlantAttackAction.h"
 #include "PlantDeadAction.h"
 #include "Transition.hpp"
-
 #include "PlantAttackCondition.h"
+
+#include "Enemy.h"
 
 Playground* Playground::mInstance = nullptr;
 
@@ -38,6 +39,7 @@ Playground* Playground::instantiate()
 		PlantAttackCondition* planteAttackCondition = new PlantAttackCondition();
 		Transition* attackPlanteTransition = new Transition();
 		attackPlanteTransition->addCondition(planteAttackCondition);
+		attackPlanteTransition->setTargetState(Context::State::ATTACK);
 		mInstance->mPlantBehaviour->AddTransition(Context::State::IDLE, attackPlanteTransition);
 
 		// Add 4 plants
@@ -48,6 +50,15 @@ Playground* Playground::instantiate()
 			position.y += 100;
 			mInstance->mPlants.push_back(plant);
 		}
+
+		// Create a enemy behaviour
+		mInstance->mEnemyBehaviour = new Behaviour();
+
+		position.x = 500;
+		position.y = 50;
+		sf::Vector2f direction = sf::Vector2f(-1, 0);
+		Enemy* enemy = new Enemy(position, direction, 2, mInstance->mEnemyBehaviour);
+		mInstance->mEnemies.push_back(enemy);
 	}
 	return mInstance;
 }
@@ -63,6 +74,13 @@ void Playground::draw(sf::RenderWindow& window)
 	{
 		window.draw(*plant->getShape());
 	}
+	if (mEnemies.size() > 0)
+	{
+		for (auto enemy : mEnemies)
+		{
+			window.draw(*enemy->getShape());
+		}
+	}
 }
 
 void Playground::update()
@@ -71,19 +89,27 @@ void Playground::update()
 	{
 		mPlantBehaviour->Update(plant);
 	}
+	for (auto enemy : mEnemies)
+	{
+		enemy->Update();
+	}
 }
 
 void Playground::handleUserInput(sf::Event& event, sf::RenderWindow& window)
 {
-	//if (event.type == sf::)
-	//{
-	//	if (event.mouseButton.button == sf::Mouse::Left)
-	//	{
-	//		sf::Vector2f position = window.mapPixelToCoords(sf::Mouse::getPosition(window));
-	//		Plant* plant = new Plant(position, mPlantBehaviour, 10);
-	//		mPlants.push_back(plant);
-	//	}
-	//}
+	if (event.type == sf::Event::MouseButtonPressed)
+	{
+		if (event.mouseButton.button == sf::Mouse::Left)
+		{
+			sf::Vector2f position = window.mapPixelToCoords(sf::Mouse::getPosition(window));
+			//Direction vers la gauche
+			position.x = 200;
+			position.y = 50;
+			sf::Vector2f direction = sf::Vector2f(-1, 0);
+			Enemy* enemy = new Enemy(position, direction, 2, mEnemyBehaviour);
+			mEnemies.push_back(enemy);
+		}
+	}
 }
 
 std::vector<Enemy*>& Playground::getEnemysInstance()

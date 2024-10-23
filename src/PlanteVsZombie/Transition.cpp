@@ -22,5 +22,6 @@ void Transition::Try(Plant * plant)
     if (true_tests != 0 && true_tests == mConditions.size())
     {
         plant->setState(mTargetState);
+		std::cout << plant->getState()  << std::endl;
     }
 }

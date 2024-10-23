@@ -14,7 +14,7 @@ class Behaviour
     std::map<Context::State, std::vector<Transition*>> mTransitions;
 public:
     Behaviour();
-    ~Behaviour();
+    virtual ~Behaviour();
 
     void Start(Plant *plant);
     void Update(Plant *plant);

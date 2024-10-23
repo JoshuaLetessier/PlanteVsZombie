@@ -3,7 +3,15 @@
 
 #include "Plant.hpp"
 #include "Playground.h"
-//#include "Enemy.h"
+#include "Enemy.h"
+
+PlantAttackCondition::PlantAttackCondition()
+{
+}
+
+PlantAttackCondition::~PlantAttackCondition()
+{
+}
 
 bool PlantAttackCondition::Test(Plant* plant)
 {
@@ -14,10 +22,13 @@ bool PlantAttackCondition::Test(Plant* plant)
 
 	for (auto enemy : mEnemies)
 	{
-		//if (enemy->getPosition().x == plant->getPosition().x)
-		//{
-		//	return true;
-		//}
+		//Test postions in a rect with the top left corner of the plant and the bottom right corner of the plant
+
+		float tolerance = 0.1f; // ou un autre petit nombre selon la précision dont tu as besoin
+		if (std::abs(enemy->getPosition().y - plant->getPosition().y) < tolerance)
+		{
+			return true;
+		}
 	}
 
      return false; 

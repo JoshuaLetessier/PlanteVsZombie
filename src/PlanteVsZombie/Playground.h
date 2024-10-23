@@ -21,6 +21,7 @@ private:
 	static Playground* mInstance;
 
 	Behaviour* mPlantBehaviour;
+	Behaviour* mEnemyBehaviour;
 
 	std::vector<Plant*> mPlants;
 	std::vector<Enemy*> mEnemies;

@@ -19,9 +19,9 @@
             "platform_toolset": "v143",
             "precompiled_header": "Use",
             "precompiled_header_file": "pch.h",
-            "preprocessor_definitions": "SFML_STATIC;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)",
+            "preprocessor_definitions": "SFML_STATIC;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)",
             "sdl_check": "true",
-            "subsystem": "Windows",
+            "subsystem": "Console",
             "type": "Application",
             "use_debug_libraries": "true",
             "warning_level": "Level3"
@@ -40,9 +40,9 @@
             "platform_toolset": "v143",
             "precompiled_header": "Use",
             "precompiled_header_file": "pch.h",
-            "preprocessor_definitions": "SFML_STATIC;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)",
+            "preprocessor_definitions": "SFML_STATIC;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)",
             "sdl_check": "true",
-            "subsystem": "Windows",
+            "subsystem": "Console",
             "type": "Application",
             "use_debug_libraries": "false",
             "warning_level": "Level3"

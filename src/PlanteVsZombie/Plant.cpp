@@ -7,13 +7,13 @@ Plant::Plant()
 
 Plant::Plant(sf::Vector2f position, Behaviour* plant_behaviour, int ammo_count)
 {
-	//Create a circle shape with a radius of 10
-	mShape = sf::CircleShape(10);
-	mShape.setPosition(position);
-	mShape.setFillColor(sf::Color::Blue);
+	mBehaviour = plant_behaviour;
 	mPosition = position;
-
 	mState = Context::State::IDLE;
+
+	mShape.setRadius(10);
+	mShape.setFillColor(sf::Color::Blue);
+	mShape.setPosition(mPosition);
 }
 
 Plant::~Plant()
@@ -40,18 +40,39 @@ sf::Vector2f Plant::getPosition() const
 	return mPosition;
 }
 
+sf::CircleShape Plant::getShape() const
+{
+	return mShape;
+
+}
+
 int Plant::getAmmoCount() const
 {
 	return mAmmoCount;
+}
+
+void Plant::setAmmoCount(int newAmmoCount)
+{
+	mAmmoCount = newAmmoCount;
+}
+
+int Plant::getHealth() const
+{
+	return mHealth;
 }
 
 void Plant::refillMagazine()
 {
 }
 
+void Plant::setIsShooting(bool newIsShooting)
+{
+	mIsShooting = newIsShooting;
+}
+
 bool Plant::shoot()
 {
-	return false;
+	return mIsShooting;
 }
 
 void Plant::Update()

@@ -19,6 +19,7 @@ void PlantAttackAction::Start(Plant* plant)
 void PlantAttackAction::Update(Plant* plant)
 {
     std::cout << "Plant is shooting" << std::endl;
+	plant->setIsShooting(true);
 }
 
 void PlantAttackAction::End(Plant* plant)

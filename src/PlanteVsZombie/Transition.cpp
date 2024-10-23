@@ -1,5 +1,5 @@
 #include "Transition.hpp"
-#include "Player.hpp"
+#include "Plant.hpp"
 
 void Transition::setTargetState(Context::State target_state)
 {
@@ -11,15 +11,15 @@ void Transition::addCondition(Condition* condition)
     mConditions.push_back(condition);
 }
 
-void Transition::Try(Player * player)
+void Transition::Try(Plant * plant)
 {
     int true_tests = 0;
     for (const auto &c : mConditions)
     {
-        true_tests += c->Test(player);
+        true_tests += c->Test(plant);
     }
     if (true_tests != 0 && true_tests == mConditions.size())
     {
-        player->setState(mTargetState);
+        plant->setState(mTargetState);
     }
 }

@@ -5,7 +5,7 @@
 
 #include <vector>
 
-class Player;
+class Plant;
 
 class Transition
 {
@@ -14,7 +14,7 @@ protected:
     std::vector<Condition*> mConditions;
 
 public:
-    void Try(Player * player);
+    void Try(Plant * plant);
     void setTargetState(Context::State target_state);
     void addCondition(Condition* condition);
 };

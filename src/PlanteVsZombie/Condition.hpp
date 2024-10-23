@@ -1,9 +1,9 @@
 #pragma once
 
-class Player;
+class Plant;
 
 class Condition 
 {
 public:
-    virtual bool Test(Player * player) = 0;
+    virtual bool Test(Plant * plant) = 0;
 };

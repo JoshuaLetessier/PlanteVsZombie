@@ -5,7 +5,7 @@
 #include <vector>
 
 class Action;
-class Player;
+class Plant;
 class Transition;
 
 class Behaviour
@@ -16,9 +16,9 @@ public:
     Behaviour();
     ~Behaviour();
 
-    void Start(Player *player);
-    void Update(Player *player);
-    void End(Player *player);
+    void Start(Plant *plant);
+    void Update(Plant *plant);
+    void End(Plant *plant);
 
     void AddAction(Context::State key, Action* value);
     void AddTransition(Context::State key, Transition* value);

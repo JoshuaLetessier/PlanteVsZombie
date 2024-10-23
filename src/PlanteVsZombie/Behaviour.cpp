@@ -1,7 +1,7 @@
 #include "Behaviour.hpp"
 #include "IdleAction.hpp"
 
-#include "Player.hpp"
+#include "Plant.hpp"
 #include "Transition.hpp"
 
 Behaviour::Behaviour()
@@ -37,33 +37,33 @@ void Behaviour::AddAction(Context::State key, Action* value)
     mActions[key].push_back(value);
 }
 
-void Behaviour::Start(Player * player)
+void Behaviour::Start(Plant * plant)
 {
-    for (const auto & a : mActions[player->getState()])
+    for (const auto & a : mActions[plant->getState()])
     {
-        a->Start(player);
+        a->Start(plant);
     }
 }
 
-void Behaviour::Update(Player * player)
+void Behaviour::Update(Plant * plant)
 {
-    for (const auto & a : mActions[player->getState()])
+    for (const auto & a : mActions[plant->getState()])
     {
-        a->Update(player);
+        a->Update(plant);
     }
 
-    for (const auto & a : mTransitions[player->getState()])
+    for (const auto & a : mTransitions[plant->getState()])
     {
-        a->Try(player);
+        a->Try(plant);
     }
 }
 
 
-void Behaviour::End(Player * player)
+void Behaviour::End(Plant * plant)
 {
-    for (const auto & a : mActions[player->getState()])
+    for (const auto & a : mActions[plant->getState()])
     {
-        a->End(player);
+        a->End(plant);
     }
 }
 

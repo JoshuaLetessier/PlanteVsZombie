@@ -1,3 +1,5 @@
+#include "pch.h"
+
 #include "Behaviour.hpp"
 #include "IdleAction.hpp"
 
@@ -59,11 +61,11 @@ void Behaviour::Update(Plant * plant)
 }
 
 
-void Behaviour::End(Plant * plant)
+void Behaviour::End(Plant *plant)
 {
     for (const auto & a : mActions[plant->getState()])
     {
-        a->End(plant);
+		a->End(plant);
     }
 }
 

@@ -14,6 +14,5 @@ void Enemy::Update()
 {
 	sf::Vector2f position = this->getPosition();
 	position += mDirection * mSpeed;
-	//std::cout << "Enemy position: " << position.x << " " << position.y << std::endl;
 	this->setPosition(position);
 }

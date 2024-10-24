@@ -22,6 +22,7 @@ private:
 
 	Behaviour* mPlantBehaviour;
 	Behaviour* mEnemyBehaviour;
+	Behaviour* mProjectileBehaviour;
 
 	std::vector<Plant*> mPlants;
 	std::vector<Enemy*> mEnemies;

@@ -2,7 +2,7 @@
 #include "Projectile.h"
 
 Projectile::Projectile(sf::Vector2f position, sf::Vector2f direction, float speed, Behaviour* projectile_behaviour)
-	: Entity("Projectile", 1, position, sf::Color::White, projectile_behaviour), mDirection(direction), mSpeed(speed)
+	: Entity("Projectile", 10, position, sf::Color::White, projectile_behaviour), mDirection(direction), mSpeed(speed)
 {
 }
 

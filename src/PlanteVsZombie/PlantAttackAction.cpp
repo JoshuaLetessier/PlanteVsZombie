@@ -13,13 +13,21 @@ PlantAttackAction::~PlantAttackAction()
 
 void PlantAttackAction::Start(Plant* plant)
 {
-
+	reloadStartTime = std::chrono::steady_clock::now();
 }
 
 void PlantAttackAction::Update(Plant* plant)
 {
-    std::cout << "Plant is shooting" << std::endl;
-	plant->setIsShooting(true);
+	auto currentTime = std::chrono::steady_clock::now();
+	auto elapsedTime = std::chrono::duration_cast<std::chrono::seconds>(currentTime - reloadStartTime).count();
+	if (elapsedTime >= reloadTime)
+	{
+		plant->setIsShooting(true);
+	}
+	else
+	{
+		plant->setIsShooting(false);
+	}
 }
 
 void PlantAttackAction::End(Plant* plant)

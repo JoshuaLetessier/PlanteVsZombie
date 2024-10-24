@@ -10,6 +10,7 @@
 #include "PlantAttackCondition.h"
 
 #include "Enemy.h"
+#include "Projectile.h"
 
 Playground* Playground::mInstance = nullptr;
 
@@ -54,11 +55,15 @@ Playground* Playground::instantiate()
 		// Create a enemy behaviour
 		mInstance->mEnemyBehaviour = new Behaviour();
 
+
 		position.x = 500;
 		position.y = 50;
 		sf::Vector2f direction = sf::Vector2f(-1, 0);
 		Enemy* enemy = new Enemy(position, direction, 2, mInstance->mEnemyBehaviour);
 		mInstance->mEnemies.push_back(enemy);
+
+		//Create a projectile behaviour
+		mInstance->mProjectileBehaviour = new Behaviour();
 	}
 	return mInstance;
 }
@@ -81,6 +86,13 @@ void Playground::draw(sf::RenderWindow& window)
 			window.draw(*enemy->getShape());
 		}
 	}
+	if (mProjectiles.size() > 0)
+	{
+		for (auto projectile : mProjectiles)
+		{
+			window.draw(*projectile->getShape());
+		}
+	}
 }
 
 void Playground::update()
@@ -88,11 +100,23 @@ void Playground::update()
 	for (auto plant : mPlants)
 	{
 		mPlantBehaviour->Update(plant);
+		if (plant->shoot() && plant->getAmmoCount() > 0)
+		{
+			plant->setAmmoCount(plant->getAmmoCount() - 1);
+			sf::Vector2f position(plant->getPosition().x, plant->getPosition().y);
+			Projectile* projectile = new Projectile(position, sf::Vector2f(1, 0), 5, mPlantBehaviour);
+			mProjectiles.push_back(projectile);
+		}
 	}
 	for (auto enemy : mEnemies)
 	{
 		enemy->Update();
 	}
+	for (auto projectile : mProjectiles)
+	{
+		projectile->Update();
+	}
+	checkCollision(mProjectiles, mEnemies);
 }
 
 void Playground::handleUserInput(sf::Event& event, sf::RenderWindow& window)
@@ -119,5 +143,29 @@ std::vector<Enemy*>& Playground::getEnemysInstance()
 
 void Playground::checkCollision(std::vector<Projectile*>& mProjectiles, std::vector<Enemy*>& mEnemies)
 {
-    // Collision checking code
+	for (auto projectile : mProjectiles)
+	{
+		for (auto enemy : mEnemies)
+		{
+			if (projectile->getShape()->getGlobalBounds().intersects(enemy->getShape()->getGlobalBounds()))
+			{
+				std::cout << "Collision between projectile and enemy" << std::endl;
+				// Remove the projectile
+				auto it = std::find(mProjectiles.begin(), mProjectiles.end(), projectile);
+				if (it != mProjectiles.end())
+				{
+					mProjectiles.erase(it);
+					delete projectile;
+				}
+
+				// Remove the enemy
+				auto it2 = std::find(mEnemies.begin(), mEnemies.end(), enemy);
+				if (it2 != mEnemies.end())
+				{
+					mEnemies.erase(it2);
+					delete enemy;
+				}
+			}
+		}
+	}
 }

@@ -31,6 +31,9 @@ Playground::~Playground()
 	mEnemies.clear();
 	mProjectiles.clear();
 	delete mPlantBehaviour;
+	
+	delete mEnemyBehaviour;
+
 }
 
 Playground* Playground::instantiate()
@@ -46,9 +49,8 @@ Playground* Playground::instantiate()
 		mInstance->mPlantBehaviour->AddAction(Context::State::DEAD, new PlantDeadAction());
 
 		// Create AttackPlantTransitions
-		PlantAttackCondition* planteAttackCondition = new PlantAttackCondition();
 		Transition* attackPlanteTransition = new Transition();
-		attackPlanteTransition->addCondition(planteAttackCondition);
+		attackPlanteTransition->addCondition(new PlantAttackCondition());
 		attackPlanteTransition->setTargetState(Context::State::ATTACK);
 		mInstance->mPlantBehaviour->AddTransition(Context::State::IDLE, attackPlanteTransition);
 

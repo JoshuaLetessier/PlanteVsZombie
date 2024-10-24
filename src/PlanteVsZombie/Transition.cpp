@@ -2,6 +2,15 @@
 #include "Transition.hpp"
 #include "Plant.hpp"
 
+Transition::~Transition()
+{
+	for (auto c : mConditions)
+	{
+		delete c;
+	}
+	mConditions.clear();
+}
+
 void Transition::setTargetState(Context::State target_state)
 {
     mTargetState = target_state;

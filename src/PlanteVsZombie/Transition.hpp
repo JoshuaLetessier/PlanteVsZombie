@@ -14,6 +14,7 @@ protected:
     std::vector<Condition*> mConditions;
 
 public:
+	virtual ~Transition();
     void Try(Plant * plant);
     void setTargetState(Context::State target_state);
     void addCondition(Condition* condition);

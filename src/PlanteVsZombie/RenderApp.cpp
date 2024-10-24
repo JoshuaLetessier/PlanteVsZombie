@@ -3,16 +3,6 @@
 #include "Plant.hpp"
 #include "Behaviour.hpp"
 
-RenderApp::~RenderApp()
-{
-	for (auto plant : mPlants)
-	{
-		delete plant;
-	}
-	mPlants.clear();
-	delete Playground::getInstance();
-}
-
 RenderApp *RenderApp::Init()
 {
 	auto app = new RenderApp();
@@ -49,6 +39,7 @@ void RenderApp::Run()
 
 void RenderApp::Release()
 {
+	delete Playground::getInstance();
 	mWindow->close();
 	delete mWindow;
 	delete this;

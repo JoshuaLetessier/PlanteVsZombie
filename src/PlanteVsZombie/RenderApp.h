@@ -7,7 +7,7 @@ class RenderApp
 {
 public:
 	RenderApp() = default;
-	virtual ~RenderApp();
+	virtual ~RenderApp() = default;
 
 	static RenderApp* Init();
 	void Run();
@@ -15,6 +15,5 @@ public:
 
 private:
 	sf::RenderWindow* mWindow = nullptr;
-	std::vector<Plant*> mPlants = {};
 
 };

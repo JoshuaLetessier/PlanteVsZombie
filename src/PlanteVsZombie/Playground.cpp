@@ -19,7 +19,17 @@ Playground::~Playground()
 	{
 		delete plant;
 	}
+	for (auto enemy : mEnemies)
+	{
+		delete enemy;
+	}
+	for (auto projectile : mProjectiles)
+	{
+		delete projectile;
+	}
 	mPlants.clear();
+	mEnemies.clear();
+	mProjectiles.clear();
 	delete mPlantBehaviour;
 }
 

@@ -10,7 +10,7 @@ class Playground
 public:
 	static Playground* instantiate();
 	static Playground* getInstance();
-	~Playground();
+	virtual ~Playground();
 	void draw(sf::RenderWindow& window);
 	void update();
 	void handleUserInput(sf::Event& event, sf::RenderWindow& window);

@@ -105,6 +105,11 @@ void Playground::update()
 	{
 		enemy->Update();
 	}
+	for (auto projectile : mProjectiles)
+	{
+		projectile->Update();
+	}
+	checkCollision(mProjectiles, mEnemies);
 }
 
 void Playground::handleUserInput(sf::Event& event, sf::RenderWindow& window)
@@ -131,5 +136,15 @@ std::vector<Enemy*>& Playground::getEnemysInstance()
 
 void Playground::checkCollision(std::vector<Projectile*>& mProjectiles, std::vector<Enemy*>& mEnemies)
 {
-    // Collision checking code
+	for (auto projectile : mProjectiles)
+	{
+		for (auto enemy : mEnemies)
+		{
+			if (projectile->getGlobalBounds().intersects(enemy->getGlobalBounds()))
+			{
+				delete enemy;
+				delete projectile;
+			}
+		}
+	}
 }

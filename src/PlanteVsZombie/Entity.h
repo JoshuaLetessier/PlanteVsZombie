@@ -40,6 +40,9 @@ public:
 	sf::CircleShape* getShape() const
 	{ return mShape; }
 
+	sf::FloatRect getGlobalBounds()
+	{ return mShape->getGlobalBounds(); }
+
 	virtual void Update() = 0;
 
 private:

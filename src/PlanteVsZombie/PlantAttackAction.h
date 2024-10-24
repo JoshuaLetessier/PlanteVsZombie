@@ -10,5 +10,8 @@ public:
 	void Start(Plant* plant) override;
 	void Update(Plant* plant) override;
 	void End(Plant* plant) override;
+
+private:
+	float mTimeHasShooted = 0.0;
 };
 

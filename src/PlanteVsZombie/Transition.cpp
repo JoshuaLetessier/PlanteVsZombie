@@ -26,7 +26,7 @@ void Transition::Try(Plant * plant)
     int true_tests = 0;
     for (const auto &c : mConditions)
     {
-        true_tests += c->Test(plant);
+        true_tests += c->Test(plant) ? 1 : 0;
     }
     if (true_tests != 0 && true_tests == mConditions.size())
     {

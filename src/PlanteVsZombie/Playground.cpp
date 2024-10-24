@@ -100,6 +100,7 @@ void Playground::update()
 	for (auto plant : mPlants)
 	{
 		mPlantBehaviour->Update(plant);
+		plant->Update();
 	}
 	for (auto enemy : mEnemies)
 	{

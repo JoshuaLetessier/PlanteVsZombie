@@ -12,6 +12,6 @@ public:
 	void End(Plant* plant) override;
 
 private:
-	float mTimeHasShooted = 0.0;
+	double mTimeNextShoot = 0.0;
 };
 

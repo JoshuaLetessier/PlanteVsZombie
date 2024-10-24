@@ -13,15 +13,16 @@ PlantAttackAction::~PlantAttackAction()
 
 void PlantAttackAction::Start(Plant* plant)
 {
-	mTimeHasShooted = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
+	mTimeNextShoot = (float)GET_CURRENT_TIME + 1000;
 }
 
 void PlantAttackAction::Update(Plant* plant)
 {
-    std::cout << "Plant is shooting" << std::endl;
-	if (std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count() - mTimeHasShooted > 1000)
+	auto currentTime = GET_CURRENT_TIME;
+	if (currentTime >= mTimeNextShoot)
 	{
-		mTimeHasShooted = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
+		mTimeNextShoot = currentTime + 1000;
+		std::cout << "Plant is shooting" << std::endl;
 		plant->shoot();
 	}
 	plant->setIsShooting(true);
@@ -30,4 +31,5 @@ void PlantAttackAction::Update(Plant* plant)
 void PlantAttackAction::End(Plant* plant)
 {
 	plant->setIsShooting(false);
+	mTimeNextShoot = 0.0;
 }
